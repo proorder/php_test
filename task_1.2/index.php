@@ -7,11 +7,18 @@ function getItemsFromDate($date)
     if (file_exists($filename))
         $result = json_decode (file_get_contents ($filename), true);
     
+    $format = 'd.m.Y H:i:s';
     
-    // ....
+    $incomeDate = DateTime::createFromFormat($format, $date);
+    $response = [];
+    for ($i = 0; $i < count($result); $i++) {
+      $iterDate = DateTime::createFromFormat($format, $result[$i]['created']);
+      if ($incomeDate < $iterDate) {
+        $response[] = $result[$i];
+      }
+    }
     
-    
-    return $result;
+    return $response;
 }
 
 echo "<pre>";

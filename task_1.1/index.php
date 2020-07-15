@@ -2,7 +2,7 @@
 
 function convertFullName($string)
 {
-    return $result; // Результат: Фамилия И.О.
+    return preg_replace('/(.+)\s(.).+\s(.).+/', '$1 $2.$3.', $string);
 }
 
-echo convertFullName('Иванов Иван Иванович');
+echo convertFullName('Ivanov Ivan Ivanovich');

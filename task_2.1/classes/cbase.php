@@ -16,13 +16,20 @@ class CBase
             self::$params = $params;
     }
     
-    public static function getInstance()
+    public static function getInstance($args = false)
     {
         if (is_null(self::$instance))
         {
             self::$instance = new self();
         }
         
+        if ($args && is_array($args)) {
+          while ($el = current($args)) {
+            self::$params[key($args)] = $el;
+            next($args);
+          }
+        }
+
         return self::$instance;
     }
     

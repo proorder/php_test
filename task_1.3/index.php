@@ -18,3 +18,7 @@ $array = [
         'name' => 'Jane'
     ],
 ];
+
+usort($array, function($a, $b) {
+  return $b['sort'] - $a['sort'];
+});
